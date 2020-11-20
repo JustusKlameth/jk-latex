@@ -3,6 +3,8 @@
 \usepackage[german]{babel}
 \selectlanguage{german}
 
+\usepackage{hyperref}
+
 \usetheme{Dresden}
 
 \beamertemplatenavigationsymbolsempty
@@ -27,18 +29,18 @@
 
     \frame{\titlepage}
 
-    \begin{frame}
-        \frametitle{Inhalt}
+    % Inhaltsverzeichnis
+    \begin{frame}{Inhalt}
         \tableofcontents
     \end{frame}
 
-    \section{Quellen}
+    % Quellen - ohne eigenen Section-Folie
+    \section*{Quellen}
 
-    \begin{frame}
-        \frametitle{Quellen}
+    \begin{frame}{Quellen}
         
         \begin{itemize}
-            \item Beispiel
+            \item \url{Bei.spiel}
         \end{itemize}
 
     \end{frame}
