@@ -34,3 +34,11 @@
     \thispagestyle{empty}
     \clearpage
 }
+
+\newcommand{\hauptpunkt}[1]{
+  \section{#1}  
+}
+
+\newcommand{\unterpunkt}[1]{
+  \subsection*{#1}
+}
