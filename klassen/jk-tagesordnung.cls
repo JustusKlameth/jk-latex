@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jk-tagesordnung}[2020/11/30 Justus Klameth Tagesordnung Klasee]
+\ProvidesClass{jk-tagesordnung}[2020/11/30 Justus Klameth Tagesordnung Klasse]
 
 \LoadClass[parskip]{scrartcl}
 \RequirePackage{jk-util}
