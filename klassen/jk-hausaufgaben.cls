@@ -39,12 +39,31 @@
     \clearpage
 }
 
-\newcommand{\aufgabe}[1]{
+\RequirePackage{xifthen}
+
+\newcommand{\aufgabe}[2][]{
     \leftskip=0cm
-    \section[Aufgabe \arabic{section}]{#1}
+    \ifthenelse{\isempty{#1}}
+    {}
+    {\setcounter{section}{#1 - 1}}
+    \section[Aufgabe \arabic{section}]{#2}
 }
 
-\newcommand{\unteraufgabe}{
-    \subsection{}
+\newcommand{\unteraufgabe}[1][]{
     \leftskip=1cm
+    \ifthenelse{\isempty{#1}}
+    {}
+    {\setcounter{subsection}{#1 - 1}}
+    \subsection{}
+}
+
+\newcounter{unterunteraufgabe}[subsection]
+
+\newcommand{\unterunteraufgabe}[1][]{
+    \leftskip=1cm
+    \ifthenelse{\isempty{#1}}
+    {}
+    {\setcounter{unterunteraufgabe}{#1 - 1}}
+    \refstepcounter{unterunteraufgabe}
+    \paragraph{(\theunterunteraufgabe )}
 }
