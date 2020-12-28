@@ -1,3 +1,3 @@
-# LaTeX Vorlagen
+# jk-latex
 
-Einige LaTeX Vorlagen
+Eine Sammlung von selbst erstellten LaTeX Klassen, Paketen und Vorlagen. 
