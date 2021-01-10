@@ -43,10 +43,18 @@
 
 \newcommand{\aufgabe}[2][]{
     \leftskip=0cm
+    
     \ifthenelse{\isempty{#1}}
     {}
     {\setcounter{section}{#1 - 1}}
-    \section[Aufgabe \arabic{section}]{#2}
+    
+    \ifthenelse{\isempty{#2}}
+    {
+        \renewcommand{\thesection}{Aufgabe \arabic{section}}
+        \section{}
+        \renewcommand{\thesection}{Aufgabe \arabic{section}:}
+    }
+    {\section[Aufgabe \arabic{section}]{#2}}
 }
 
 \newcommand{\unteraufgabe}[1][]{
