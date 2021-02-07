@@ -1,36 +1,45 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jk-hausaufgaben}[2020/12/14 Justus Klameth Hausaufgaben Klasse]
+\ProvidesClass{jk-hausaufgaben}[2021/02/07 Justus Klameth Hausaufgaben Klasse]
 
 \LoadClass[parskip]{scrartcl}
 \RequirePackage{jk-util}
 
-\subject{Hausaufgaben}
-\author{Justus Klameth}
-\title{Beispiel Fach}
-\subtitle{Beispiel Thema}
-\def\revision{Version vom \today}
-\def\revisionkurz{Version vom \the\day.\the\month.\the\year}
-\date{\revision}
-
-\addto\captionsgerman{
-  \renewcommand{\contentsname}
-    {Aufgaben}
+% Einstellen des Faches für das die Aufgaben bearbeitet werden, erforderlich
+\newcommand{\setFach}[1]{
+    \def\Fach{#1}
 }
+\title{\Fach}
 
-\renewcommand{\thesection}{Aufgabe \arabic{section}:}
-\renewcommand{\thesubsection}{\alph{subsection})}
-\renewcommand{\autodot}{}
+% Möglichkeit zum Einstellen der Arbeitsart, default: Hausaufgaben
+\subject{Hausaufgaben}
+\let\setArbeitsArt\subject
 
+% Möglichkeit zum Einstellen des Themas der Aufgaben
+\let\setThema\subtitle
+
+% Standard Autor
+\author{Justus Klameth}
+
+% Möglichkeit zum Einstellen des Aufgabendatums, default: \today
+\def\AufgabenDate{Aufgaben vom \today}
+\newcommand{\setAufgabenDate}[1]{
+    \def\AufgabenDate{Aufgaben vom #1}
+}
+\date{\AufgabenDate}
+
+% Kopf- und Fußzeile
+\def\version{Version vom \the\day.\the\month.\the\year}
 \RequirePackage{scrlayer-scrpage}
 \RequirePackage{lastpage}
 \KOMAoptions{headsepline}
 \lohead{\@subject}
-\cohead{\@subtitle}
-\rohead{\@title}
-\lofoot{\revisionkurz}
+\cohead{\@title}
+\rohead{\@subtitle}
+\lofoot{\version}
 \cofoot{Seite \thepage{} von \pageref{LastPage}}
 \rofoot{\@author}
 
+% Erstellen eines Titelblatts mit Inhaltsverzeichnis
 \newcommand{\titelblatt}{
     \maketitle
     \vfill
@@ -39,39 +48,22 @@
     \clearpage
 }
 
-\RequirePackage{xifthen}
-
-\newcommand{\aufgabe}[2][]{
-    \leftskip=0cm
-    
-    \ifthenelse{\isempty{#1}}
-    {}
-    {\setcounter{section}{#1 - 1}}
-    
-    \ifthenelse{\isempty{#2}}
-    {
-        \renewcommand{\thesection}{Aufgabe \arabic{section}}
-        \section{}
-        \renewcommand{\thesection}{Aufgabe \arabic{section}:}
+% Inhaltsverzeichnis umbenennen
+\newcommand{\setTOCName}[1]{
+    \addto\captionsgerman{
+        \renewcommand{\contentsname}{#1}
     }
-    {\section[Aufgabe \arabic{section}]{#2}}
 }
 
-\newcommand{\unteraufgabe}[1][]{
-    \leftskip=1cm
-    \ifthenelse{\isempty{#1}}
-    {}
-    {\setcounter{subsection}{#1 - 1}}
-    \subsection{}
-}
-
-\newcounter{unterunteraufgabe}[subsection]
-
-\newcommand{\unterunteraufgabe}[1][]{
-    \leftskip=1cm
-    \ifthenelse{\isempty{#1}}
-    {}
-    {\setcounter{unterunteraufgabe}{#1 - 1}}
-    \refstepcounter{unterunteraufgabe}
-    \paragraph{(\theunterunteraufgabe )}
-}
+% Aufgabenstellung
+\newenvironment{aufgabenstellung}
+    {
+        \begin{center}
+            \begin{tabular}{|p{0.9\textwidth}|}
+                \hline\\
+    }
+    { 
+                \\\\\hline
+            \end{tabular} 
+        \end{center}
+    }
