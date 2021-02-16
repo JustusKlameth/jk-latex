@@ -54,16 +54,3 @@
         \renewcommand{\contentsname}{#1}
     }
 }
-
-% Aufgabenstellung
-\newenvironment{aufgabenstellung}
-    {
-        \begin{center}
-            \begin{tabular}{|p{0.9\textwidth}|}
-                \hline\\
-    }
-    { 
-                \\\\\hline
-            \end{tabular} 
-        \end{center}
-    }
